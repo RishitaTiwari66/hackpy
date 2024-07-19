@@ -68,6 +68,14 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 ROOT_URLCONF = 'hackpy.urls'
 
+CELERY_BEAT_SCHEDULE = {
+    'crawl-hackernews-every-hour': {
+        'task': 'news.tasks.crawl_hackernews',
+        'schedule': 3600.0,  # every hour
+    },
+}
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

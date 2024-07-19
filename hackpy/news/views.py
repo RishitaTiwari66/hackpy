@@ -7,6 +7,8 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import News, Comment, Vote
 from django.shortcuts import get_object_or_404, redirect
+from .models import News, Comment, Vote
+from .forms import NewsForm, CommentForm
 
 class NewsListView(ListView):
     model = News
@@ -17,9 +19,15 @@ class NewsDetailView(DetailView):
     model = News
     template_name = 'news/news_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all()
+        context['comment_form'] = CommentForm()
+        return context
+
 class NewsCreateView(LoginRequiredMixin, CreateView):
     model = News
-    fields = ['title', 'url']
+    form_class = NewsForm
     template_name = 'news/news_form.html'
     success_url = '/'
 

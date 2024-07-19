@@ -5,3 +5,5 @@ redis
 django-celery-beat
 django-haystack
 markdown
+requests
+bs4

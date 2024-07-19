@@ -8,6 +8,7 @@ from django.db import models
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 
+
 class News(models.Model):
     title = models.CharField(max_length=255)
     url = models.URLField()
