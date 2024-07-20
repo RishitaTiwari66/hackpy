@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'news',
     'django_celery_beat',
     'markdownx',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +79,15 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 3600.0,  # every hour
     },
 }
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'
 
 
 TEMPLATES = [

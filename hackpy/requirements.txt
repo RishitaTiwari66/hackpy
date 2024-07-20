@@ -7,3 +7,5 @@ django-haystack
 markdown
 requests
 bs4
+django-markdownx
+django-allauth
